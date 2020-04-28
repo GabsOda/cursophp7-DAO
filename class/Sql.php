@@ -7,16 +7,16 @@
             $this->conn = new PDO("mysql:host=localhost;dbname=db_php_7", "G_Issamu", "Gabes-311001");
         }
 
-        private function setParams($statmets, $parameters = array())
+        private function setParams($statemets, $parameters = array())
         {
             foreach($parameters as $key => $value){
-                $this->setParam($key, $value);
+                $this->setParam($statemets, $key, $value);
             }
         }
 
-        private function setParam($statmets, $key, $value)
+        private function setParam($statemets, $key, $value)
         {
-            $statmets->bindParam($key, $value);
+            $statemets->bindParam($key, $value);
         }
 
         public function query($rawQuery, $params = array())
