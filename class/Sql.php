@@ -4,7 +4,7 @@
 
         public function __construct()
         {
-            $this->conn = new PDO("mysql:host=localhost;dbname=db_php_7", "G_Issamu", "Gabes-311001");
+            $this->conn = new PDO("mysql:host=localhost;dbname=db_php_7", "root", "192837_AbCdEf");
         }
 
         private function setParams($statemets, $parameters = array())
@@ -35,7 +35,6 @@
             $stmt = $this->query($rawQuery, $params);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         }
     }
 ?>
