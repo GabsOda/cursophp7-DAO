@@ -106,6 +106,19 @@
             }
         }
 
+        public function update($login, $password){
+            $this->setDesloguin($login);
+            $this->setDessenha($password);
+
+            $sql = new Sql();
+
+            $sql->query("UPDATE tb_usuarios SET desloguin = :LOG, dessenha = :PASSW WHERE idusuario = :ID", array(
+                ":LOG"=>$this->getDesloguin(),
+                ":PASSW"=>$this->getDessenha(),
+                ":ID"=>$this->getIdusuario()
+            ));
+        }
+
         public function __construct($login = "", $password = ""){
             $this->setDesloguin($login);
             $this->setDessenha($password);
