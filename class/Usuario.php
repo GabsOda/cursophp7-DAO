@@ -78,17 +78,37 @@
 
             if(count($result) > 0)
             {
-                $row = $result[0];
-
-                $this->setIdusuario($row['idusuario']);
-                $this->setDesloguin($row['desloguin']);
-                $this->setDessenha($row['dessenha']);
-                $this->setDtcadastro(new DateTime($row['dtcadastro']));
+                $this->setData($result[0]);
             } 
             else
             {
                 throw new Exception("Login e/ou senha inválidos.");
             }
+        }
+
+        public function setData($data){
+            $this->setIdusuario($data['idusuario']);
+            $this->setDesloguin($data['desloguin']);
+            $this->setDessenha($data['dessenha']);
+            $this->setDtcadastro(new DateTime($data['dtcadastro']));
+        }
+
+        public function insert(){
+            $sql = new Sql();
+
+            $result = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+                ":LOGIN"=>$this->getDesloguin(),
+                ":PASSWORD"=>$this->getDessenha()
+            ));
+
+            if(count($result) > 0){
+                $this->setData($result[0]);
+            }
+        }
+
+        public function __construct($login = "", $password = ""){
+            $this->setDesloguin($login);
+            $this->setDessenha($password);
         }
 
         public function __toString(){
