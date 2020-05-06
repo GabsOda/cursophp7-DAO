@@ -12,10 +12,10 @@
     echo $root;
     */
 
-    /*carrega uma lista de usuarios
-    $lista = Usuario::getList();
-    echo json_encode($lista);
-    */
+    $usuario = new Usuario();
+    $lista = $usuario->getList();
+    var_dump($lista);
+    
 
     /*Carrega uma lista de usuarios buscando pelo login
     $search = Usuario::search("jo");
@@ -41,9 +41,10 @@
     echo $usuario;
     */
 
-    //Delete um usuario
+    /*Delete um usuario
     $usuario = new Usuario();
     $usuario->loadById(5);
     $usuario->delete();
     echo $usuario;
+    */
 ?>
